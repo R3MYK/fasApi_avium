@@ -6,10 +6,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-class Item(BaseModel):
-    name : str
-    price: float
-    is_offer: Union[bool, None] = None
+
 
 @app.get("/")
 def read_root():
@@ -27,3 +24,5 @@ def calcular(operando_1: float, operando_2: float):
 @app.put('/items/{item_id}')
 def update_item(item_id: int, item: Item):
     return {'item_name': item.name, 'item_id' : item_id}
+
+
