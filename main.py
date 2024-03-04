@@ -4,6 +4,8 @@ from fastapi import FastAPI
 
 from pydantic import BaseModel
 
+from models.item_models import Item
+
 app = FastAPI()
 
 
