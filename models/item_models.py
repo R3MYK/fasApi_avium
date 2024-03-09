@@ -8,4 +8,4 @@ class Item(BaseModel):
     price: float
     is_offer: Union[bool, None] = None
 
-
+|
