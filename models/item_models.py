@@ -1,3 +1,4 @@
+"""
 from typing import Union
 
 from pydantic import BaseModel
@@ -6,6 +7,4 @@ from pydantic import BaseModel
 class Item(BaseModel):
     name : str
     price: float
-    is_offer: Union[bool, None] = None
-
-|
+    is_offer: Union[bool, None] = None 2"""
