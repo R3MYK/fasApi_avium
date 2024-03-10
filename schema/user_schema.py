@@ -1,6 +1,6 @@
-from pydantic import BaseModel
+from pydantic import BaseModel #Libreria para modelo de datos
 
-from typing import Optional
+from typing import Optional #libreria para definir tipo de datos
 
 #Schema de la tabla User
 class UserSchema(BaseModel):
