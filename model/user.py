@@ -6,6 +6,7 @@ from config.db import engine, metadata
 
 users = Table("tb_user", metadata,
               Column("user_cod", Integer, primary_key=True),
+              Column("user_pass", String, nullable=False),
               Column("user_rut", Integer, nullable=False),
               Column("user_name", String(255), nullable=False),
               Column("user_last_name", String(255), nullable=False),
