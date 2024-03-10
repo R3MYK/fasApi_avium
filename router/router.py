@@ -1,5 +1,7 @@
 from fastapi import APIRouter 
 from schema.user_schema import UserSchema
+from config.db import conn
+from model.user import users
 
 user = APIRouter()
 
@@ -10,5 +12,9 @@ def root():
 @user.post("/api/user")
 def create_user(data_user: UserSchema):
     new_user = data_user.dict()#Crea Diccionario de datos
-    print (data_user)
-    print (new_user)
+    conn.execute(users.insert().values(new_user)) #Inserta Datos
+    conn.commit() #Guarda datos en la Tabla
+
+    return "success"
+    #print (data_user)
+    #print (new_user)
