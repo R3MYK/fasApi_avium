@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Response 
 from schema.user_schema import UserSchema 
-from starlette.status import HTTP_201_CREATED   #Status
+from starlette.status import HTTP_201_CREATED, HTTP_204_NO_CONTENT  #Status
 from config.db import engine
 from model.user import users
 from werkzeug.security import generate_password_hash, check_password_hash #libreria para encriptar
@@ -42,7 +42,7 @@ def create_user(data_user: UserSchema):
         #print (new_user)
     
 #PUT
-@user.put("/api/user/{user_cod}", response_model=UserSchema) #Definir siempre responsse model
+@user.put("/api/user/{user_cod}", response_model=UserSchema) #Definir siempre response model
 
 def update_user(data_uptade: UserSchema, user_cod: int):
     #print (data_uptade)
@@ -59,6 +59,12 @@ def update_user(data_uptade: UserSchema, user_cod: int):
         result = conn.execute(users.select().where(users.c.user_cod == user_cod)).first()
         conn.commit()
         #conn.commit()
-       # print (result)
+        # print (result)
         return result
         
+@user.delete('/api/user/{userd_cod}', status_code=HTTP_204_NO_CONTENT)
+def delete_user(user_cod: int):
+    with engine.connect() as conn:
+        conn.execute(users.delete().where(users.c.user_cod == user_cod))
+        conn.commit()
+        return Response(status_code=HTTP_204_NO_CONTENT)
